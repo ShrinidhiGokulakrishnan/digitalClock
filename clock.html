@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            text-align: center;
+            background-color: #590d22;
+            color: #ff4d6d;
+            font-variant: small-caps;
+        }
+        .dClock{
+            background-color: #a4133c;
+            color: #fff0f3;
+            font-size: xx-large;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            font-family: Orbitron;
+            letter-spacing: 7px;
+        }
+    </style>
+    <title>Digital Clock</title>
+</head>
+<body>
+    <h1>Digital Clock</h1>
+    <h2>The time now is : </h2>
+    <div id="clock" class="dClock"></div>
+    <script type="text/javascript">
+        // creating a function to show current time 
+        function showTime() {
+            // has current date and time
+            var date = new Date();
+            var hr = date.getHours();
+            var min = date.getMinutes();
+            var sec = date.getSeconds();
+            var session = "AM";//default time 
+
+            if(hr==0){
+                // 12hr format
+                hr = 12;
+            }
+
+            if(hr>12){
+                // if time is 1 pm, in 24 hr format it is displayed as 13
+                // So we need to subtract 12 from 13 to get 12hr format
+                hr=hr-12;// 13hr-12hr = 1pm
+                session = "PM"
+            }
+            //displays time in hh:mm:ss 
+            hr = (hr<10)?"0"+hr:hr;
+            min = (min<10)?"0"+min:min;
+            sec = (sec<10)?"0"+sec:sec;
+
+            // gives the format of display hh:mm:ss
+            document.getElementById("clock").innerHTML = hr + ":" + min + ":" + sec + " " + session;
+            // setTimeout makes our digital clock dynamic
+            setTimeout(showTime, 1);
+        }
+        showTime();//calling the function over here
+    </script>
+</body>
+</html>
